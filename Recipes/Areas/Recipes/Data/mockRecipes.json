@@ -1,0 +1,121 @@
+
+  [
+    {
+      "id": "1",
+      "title": "Chicken Sphagetti",
+      "notes": "Canned chicken, rotissorie or even pre-cooked frozen chicken work just fine too. Serves 2 people.",
+      "Description": "First, cook the chicken and shred. Then start up the noodles and combine all the suace ingredients with the chicken. Serve with a vegetable and garlic bread.",
+      "CreatedBy": "James Heash",
+      "Ingredients": [
+        {
+          "IngredientName": "Chicken",
+          "Quantity": "1",
+          "MeasurementType": "4"
+        },
+        {
+          "IngredientName": "Hunts Italian Style Spaghetti Sauce",
+          "Quantity": "16",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Cream Cheese",
+          "Quantity": "4",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Oregano",
+          "Quantity": "1",
+          "MeasurementType": "3"
+        },
+        {
+          "IngredientName": "Sphagetti Noodles",
+          "Quantity": "16",
+          "MeasurementType": "5"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Beef Stroganoff",
+      "notes": "Can use ground turkey instead of beef. Serves 2 people.",
+      "Description": "First, cook the beef until browned. As the beef cooks, start up the noodles. Then add cream of mushroom soup, milk, and sour cream. Cook for 5 minutes on medium-low heat. Then add peas and cook for 3 minutes.",
+      "CreatedBy": "Steffani Paine",
+      "Ingredients": [
+        {
+          "IngredientName": "Beef",
+          "Quantity": "1",
+          "MeasurementType": "4"
+        },
+        {
+          "IngredientName": "Cream of Mushroom Soup",
+          "Quantity": "16",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Sour Cream",
+          "Quantity": "4",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Peas",
+          "Quantity": "8",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Bowtie Noodles",
+          "Quantity": "16",
+          "MeasurementType": "5"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Tuna Casserole",
+      "notes": "Serves 4 people.",
+      "Description": "First, cook the noodles. As they cook, combine all other ingredients excecpt crackers and half of the cheese in a bowl. After the noodles finish, add them and the mixture to a 9x12 pan. Add the remaining cheese to the top. Add crushed crackers with melted butter mixed in to the top and heat in oven for 20 minutes at 350 degrees. Cool for 5 minutes and serve.",
+      "CreatedBy": "Amanda Jessop",
+      "Ingredients": [
+        {
+          "IngredientName": "Tuna",
+          "Quantity": "0.5",
+          "MeasurementType": "4"
+        },
+        {
+          "IngredientName": "Cream of Mushroom Soup",
+          "Quantity": "8",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Cream Style Corn",
+          "Quantity": "8",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Sour Cream",
+          "Quantity": "4",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Bowtie Noodles",
+          "Quantity": "16",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Cheddar Cheese",
+          "Quantity": "8",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Ritz Crackers",
+          "Quantity": "4",
+          "MeasurementType": "5"
+        },
+        {
+          "IngredientName": "Butter",
+          "Quantity": "2",
+          "MeasurementType": "2"
+        }
+      ]
+    }
+  ]
+

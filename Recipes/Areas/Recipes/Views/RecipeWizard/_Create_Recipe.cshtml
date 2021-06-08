@@ -1,0 +1,78 @@
+﻿@*The creat recipe component's html/razor code*@
+<script type="text/x-template" id="create_recipe_template">
+    <div id="create_recipe">
+        <div class="row">
+            <div class="col-md-10">
+                <h2 style="margin-bottom: 25px;">Create Recipe</h2>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-outline-primary float-right" style="margin-right: 25px;" href="/recipe-wizard/#/recipesList">Back To Recipes</a>
+            </div>
+        </div>
+        <span style="color:gray; font-style:italic;">* indicates required field</span>
+        <div class="row" style="margin-right: 15px; margin-top: 25px;">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="yourName">Your Name <span id="nameAsterisk" style="color:red; font-size: 1.25em;">*</span></label>
+                    <input v-model="createdBy" type="text" name="yourName" class="form-control" value="" />
+                </div>
+                <div class="form-group">
+                    <label for="title">Recipe Title <span id="recipeTitleAsterisk" style="color:red; font-size: 1.25em;">*</span></label>
+                    <input v-model="recipeTitle" type="text" name="title" id="title" class="form-control" value="" />
+                </div>
+                <div class="form-group">
+                    <label>Ingredients <span id="ingredientAsterisk" style="color:red; font-size: 1.25em;">*<span style="color: red; font-size: 0.5em; vertical-align:text-top;"> 1 minimum</span></span></label> <br />
+                    <input type="button" name="addIngredientButton" class="form-control btn btn-outline-primary" value="+ Add Ingredient" @@click="addIngredientClick" /> <br />
+                </div>
+                <div class="form-group">
+                    <label for="instructions">Instructions <span id="instructionsAsterisk" style="color:red; font-size: 1.25em;">*</span></label>
+                    <textarea v-model="instructions" class="form-control" name="instructions" id="instructions" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="extraNotes">Extra Notes</label>
+                    <textarea v-model="extraNotes" class="form-control" name="extraNotes" id="extraNotes" rows="4"></textarea>
+                </div>
+                <input v-if="invalidCreateForm" type="button" name="submit" value="Create" class="form-control btn btn-success" disabled />
+                <input v-else type="button" name="submit" value="Create" @@click="createRecipe" class="form-control btn btn-success" />
+            </div>
+            <div class="col-md-6">
+                <h5 id="remainingIngredientFields" style="color:red; font-size: 0.75em; display: none;">* 1 or more ingredients are missing 1 or more fields</h5>
+                <div class="form-group" id="ingredientsList" style="max-height: 600px; overflow-y:auto;">
+                    @{
+                        var measurementNames = typeof(Recipes.Areas.Recipes.Models.MeasurementType).GetEnumNames();
+                    }
+                    @*This is far from ideal. I tried to have an ingredient object get appended to the ingredientsList div dynamically in the create recipe component.
+                      The issue this presented was that, while it did create the DOM object, it couldn't bind to the vue.js component because it wasn't created as the
+                      component was created. So this was my next best way to allow the user to create 1 ingredient at a time without knowing how many a user will need. So
+                      this for loop was the next best thing to handle the job. Error handling exists letting the user know they can't have more than 100 ingredients in
+                      a recipe.*@
+                    @for (int i = 1; i <= 100; i++)
+                    {
+                        <div id="ingredient@(i)" style="border: 1px solid #ddd; border-radius:5px; padding: 10px; margin-top: 10px; display: none;">
+                            <div class="row" style="padding: 15px;">
+                                <div class="col-md-11">
+                                    <h3>Ingredient #@(i)</h3>
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="button" value="x" class="btn btn-outline-danger" @@click="removeIngredient(@i)" />
+                                </div>
+                            </div>
+                            <label for="ingredientName">Ingredient Name <span id="ingredientNameAsterisk@(i)" style="color:red; font-size: 1.25em;">*</span></label>
+                            <input type="text" name="ingredientName" id="ingredientName@(i)" v-on:input="updateIngredientName" class="form-control" />
+                            <label for="quantity">Quantity <span id="quantityAsterisk@(i)" style="color:red; font-size: 1.25em;">*</span></label>
+                            <input type="number" name="quantity" id="ingredientQuantity@(i)" v-on:input="updateIngredientQuantity" class="form-control" />
+                            <label for="measurementUnit">Measurement Type <span id="measurementTypeAsterisk@(i)" style="color:red; font-size: 1.25em;">*</span></label>
+                            <select class="form-control" name="measurementUnit" id="ingredientUnit@(i)" v-on:input="updateIngredientUnit">
+                                <option value="">-- Select --</option>
+                                @for (int j = 0; j < measurementNames.Count(); j++)
+                                {
+                                    <option value="@measurementNames[j]">@measurementNames[j]</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

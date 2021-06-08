@@ -1,0 +1,67 @@
+﻿@*The edit recipe component's html/razor code.*@
+<script type="text/x-template" id="edit_recipe_template">
+    <div id="edit_recipe">
+        <div style="border: 3px solid #eee; border-radius: 10px; background-color: #fbfbfb; margin:15px; display:inline-block; padding: 10px; min-width: 500px;">
+            <div class="row" style="border-bottom: 3px solid #fdbeeb; margin-left: 0px; margin-right: 0px;">
+                <div class="col-xl-9 form-group">
+                    <input v-model="recipe.Title" class="form-control" style="padding-left: 15px; padding-bottom: 10px; padding-top: 15px; margin-top: 10px;" />
+                </div>
+                <div class="col-xl-3">
+                    <button style="margin-left: 10px; margin-top: 10px; margin-bottom: 10px;" class="btn btn-outline-success" @@click="doneEditing">&nbsp;Done&nbsp;</button>
+                </div>
+            </div>
+            <div style="padding-left: 15px;">
+                <p style="font-weight:700">Ingredients:</p>
+                <div class="ingredients-list" v-for="ingredient in recipe.Ingredients">
+                    <div :id="'ingredient-' + ingredient.Id" class="row" style="border-bottom: 2px solid #86ccf7; padding-left: 15px; margin-left: 10px; margin-right: 25px; margin-top: 0px; margin-bottom: 15px;">
+                        <div class="col-sm-6">
+                            <input v-model="ingredient.IngredientName" class="form-control" style="border: 2px solid #86ccf7;" type="text" />
+                        </div>
+                        <div class="col-sm-2">
+                            <input v-model="ingredient.Quantity" class="form-control" style="border: 2px solid #86ccf7;" type="number" />
+                        </div>
+                        <div class="col-sm-3">
+                            @{
+                                var measurementNames = typeof(Recipes.Areas.Recipes.Models.MeasurementType).GetEnumNames();
+                            }
+                            <select v-model="ingredient.MeasurementType" style="border: 2px solid #86ccf7;" class="form-control">
+                                @foreach (var unit in measurementNames)
+                                {
+                                    <option v-if="getMeasurementType('@unit') == ingredient.MeasurementType" selected :value="ingredient.MeasurementType">@unit</option>
+                                    <option v-else value="@unit">@unit</option>
+                                }
+                            </select>
+                        </div>
+                        <div @@click="deleteIngredient(ingredient.Id)" class="col-sm-1 btn btn-outline-danger btn-sm">x</div>
+                    </div>
+                </div>
+                <div id="ingredients-list-secondary" style="margin-top: 0px; padding-top: 0px;"></div>
+                <div style="margin-left: 40px; margin-top: 15px;">
+                    <input @@click="addIngredient" type="button" class="btn btn-outline-info" name="add-ingredient" value="+ Add Ingredient" />
+                </div>
+            </div>
+            <div class="row" style="margin-left: 15px;">
+                <label for="description" class="font-weight-bold">Instructions:</label>
+            </div>
+            <div class="row" style="margin-left: 55px;">
+                <textarea v-model="recipe.Description" name="description" type="text" style="padding-left: 15px; padding-top: 10px; border: 3px dashed #fdbeeb; border-radius: 5px;" rows="5" cols="84"></textarea>
+            </div>
+            <div class="row" style="margin-left: 15px; margin-top: 15px;">
+                <label for="notes" class="font-weight-bold">Extra Notes:</label>
+            </div>
+            <div class="row" style="margin-left: 55px;">
+                <textarea v-model="recipe.Notes" name="notes" type="text" style="padding-left: 15px; padding-top: 10px; border: 3px dashed #fdbeeb; border-radius: 5px;" rows="5" cols="84"></textarea>
+            </div>
+            <div class="row" style="margin-left: 15px; margin-top: 15px;">
+                <label for="createdBy" class="font-weight-bold">Created By:</label>
+            </div>
+            <div class="row" style="margin-left: 55px;">
+                <input v-model="recipe.CreatedBy" name="createdBy" class="form-control" type="text" style="padding-left: 15px; padding-top: 10px; border: 2px solid #86ccf7; margin-right: 35px;" />
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+    var newIngredientsCount = 0;
+    var measurementTypes = [@(Html.Raw(Json.Encode((typeof(Recipes.Areas.Recipes.Models.MeasurementType).GetEnumNames()))))];
+</script>

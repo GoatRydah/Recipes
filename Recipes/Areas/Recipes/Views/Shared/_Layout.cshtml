@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section before_content {
+    @RenderSection("before_content", false)
+}
+
+@section main_content_vue{
+    @RenderSection("main_content", false)
+}
+
+@RenderBody()
+
+@section after_content {
+    @RenderSection("after_content", false)
+}
+
+@section Scripts {
+    @RenderSection("Scripts", false)
+}

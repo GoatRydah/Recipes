@@ -1,0 +1,43 @@
+﻿@*The main app's html/razor code.*@
+@{
+    Layout = "~/Areas/Recipes/Views/Shared/_Layout.cshtml";
+}
+
+@section before_content{
+    @* App *@
+    <div id="recipeApp">
+        <br />
+}
+
+@section main_content{
+    <router-view></router-view>
+}
+
+@section after_content{
+</div>
+
+<!--RENDER HTML PORTION OF COMPONENTS-->
+@Html.Partial("_Recipe_List")
+@Html.Partial("_Create_Recipe")
+@Html.Partial("_Edit_Recipe")
+}
+
+@section scripts{
+    @* Vue *@
+    <script src="~/Areas/Recipes/Scripts/Vendors/vue.js"></script>
+    <script src="~/Areas/Recipes/Scripts/Vendors/vue-router.min.js"></script>
+
+    @* Libraries *@
+    <script src="~/Areas/Recipes/Scripts/RecipeWizard/models.js"></script>
+    <script src="~/Areas/Recipes/Scripts/RecipeWizard/config.js"></script>
+    <script src="~/Areas/Recipes/Scripts/RecipeWizard/Utils.js"></script>
+
+    @* Register Components*@
+    <script src="~/Areas/Recipes/Scripts/RecipeWizard/Recipes/RecipeList.js"></script>
+    <script src="~/Areas/Recipes/Scripts/RecipeWizard/Recipes/CreateRecipe.js"></script>
+    <script src="~/Areas/Recipes/Scripts/RecipeWizard/Recipes/EditRecipe.js"></script>
+
+    @* App *@
+    <script src="~/Areas/Recipes/Scripts/RecipeWizard/routes.config.js"></script>
+    <script src="~/Areas/Recipes/Scripts/RecipeWizard/Recipes/App.js"></script>
+}

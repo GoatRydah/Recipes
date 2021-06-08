@@ -1,0 +1,47 @@
+﻿@*The recipe list component's html/razor code*@
+<script type="text/x-template" id="recipe_list_template">
+    <div id="recipe_list">
+        <div class="row sticky-top" style="margin-right: 55px;">
+            <div class="col-10">
+                <h1 style="margin-bottom:20px;">Recipes</h1>
+            </div>
+            <div class="col-2" style="padding-left: 100px;">
+                <a style="margin-top: 15px;" class="btn btn-outline-primary" href="/recipe-wizard/#/createRecipe">New Recipe</a>
+            </div>
+        </div>
+        <div class="row" style="margin-right: 50px;">
+            <div v-for="recipe in recipes" :key="recipe.id" class="col-lg-4">
+                <div style="border: 3px solid #eee; border-radius: 10px; background-color: #fbfbfb; margin:15px; display:inline-block; padding: 10px; min-width: 500px;">
+                    <div class="row" style="border-bottom: 3px solid #fdbeeb; margin-left: 0px; margin-right: 0px;">
+                        <div class="col-xl-7">
+                            <h4 style="padding-left: 15px; padding-bottom: 10px; padding-top: 15px;">{{recipe.Title}}</h4>
+                        </div>
+                        <div class="col-xl-5">
+                            <a style="margin-top: 10px; margin-bottom: 10px;" class="btn btn-outline-info" :href="`/recipe-wizard/#/editRecipe/${recipe.Id}`">&nbsp;Edit&nbsp;</a>
+                            <button style="margin-left: 10px; margin-top: 10px; margin-bottom: 10px;" class="btn btn-outline-danger" @@click="confirmDelete(recipe.Id)">&nbsp;Delete&nbsp;</button>
+                        </div>
+                    </div>
+                    <div style="padding-left: 15px;">
+                        <p style="font-weight:600">Ingredients:</p>
+                        <div v-for="ingredient in recipe.Ingredients" style="padding-bottom: 15px;">
+                            <div class="row" style="border-bottom: 2px solid #86ccf7; padding-left: 15px; margin-left: 10px; margin-right: 25px; margin-top: 0px; margin-bottom: 0px;">
+                                <div class="col-sm-8">
+                                    <span>{{ingredient.IngredientName}}:</span>
+                                </div>
+                                <div class="col-sm-1">
+                                    <span>{{ingredient.Quantity}}</span>
+                                </div>
+                                <div class="col-sm-3">
+                                    {{getMeasurementType(ingredient.MeasurementType)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="padding-left: 15px; padding-top: 10px; border-top: 3px dashed #fdbeeb;"><span style="font-weight:600">Instructions: </span>{{recipe.Description}}</p>
+                    <p style="padding-left: 15px; padding-top: 10px; border-top: 3px dashed #fdbeeb;"><span style="font-weight:600">Extra Notes: </span>{{recipe.Notes}}</p>
+                    <p style="padding-left: 15px; padding-top: 10px; color: #808080; border-top: 2px solid #86ccf7;">created by {{recipe.CreatedBy}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
